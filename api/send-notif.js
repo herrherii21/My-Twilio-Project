@@ -2,7 +2,6 @@ const twilio = require("twilio");
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
-const fromNumber = process.env.TWILIO_PHONE;
 
 const client = twilio(accountSid, authToken);
 
@@ -13,19 +12,15 @@ module.exports = async (req, res) => {
 
   const { to, message } = req.body;
 
-  if (!to || !message) {
-    return res.status(400).json({ error: "Missing 'to' or 'message' field" });
-  }
-
   try {
     const result = await client.messages.create({
-      from: `whatsapp:${fromNumber}`,
+      from: 'whatsapp:+14155238886', // langsung literal
       to: `whatsapp:${to}`,
       body: message,
     });
 
-    return res.status(200).json({ success: true, sid: result.sid });
+    res.status(200).json({ success: true, sid: result.sid });
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error.message });
   }
 };
