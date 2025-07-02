@@ -1,4 +1,4 @@
-import twilio from "twilio";
+const twilio = require("twilio");
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -6,7 +6,7 @@ const fromNumber = process.env.TWILIO_PHONE;
 
 const client = twilio(accountSid, authToken);
 
-export default async function handler(req, res) {
+module.exports = async (req, res) => {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Only POST requests allowed" });
   }
@@ -21,11 +21,11 @@ export default async function handler(req, res) {
     const result = await client.messages.create({
       from: `whatsapp:${fromNumber}`,
       to: `whatsapp:${to}`,
-      body: message
+      body: message,
     });
 
     return res.status(200).json({ success: true, sid: result.sid });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
-}
+};
