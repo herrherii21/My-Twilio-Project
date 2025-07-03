@@ -7,7 +7,13 @@ const client = twilio(accountSid, authToken);
 
 module.exports = async (req, res) => {
   // 🔐 Tambahkan CORS headers
-  res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5501"); // ← bisa diganti dengan domain tertentu di production
+
+  // TAMBAHKAN CORS HEADERS PRODUCTIONS
+  res.setHeader("Access-Control-Allow-Origin", "https://skripsi-tugas-akhir-project-io-t.vercel.app/"); 
+  
+  // TAMBAHKAN CORS HEADERS LOCAL HOSTS
+  // res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5501"); 
+  
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
