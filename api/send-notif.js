@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
   // 🔐 Tambahkan CORS headers
 
   // TAMBAHKAN CORS HEADERS PRODUCTIONS
-  res.setHeader("Access-Control-Allow-Origin", "https://skripsi-tugas-akhir-project-io-t.vercel.app/"); 
+  res.setHeader("Access-Control-Allow-Origin", "https://skripsi-tugas-akhir-project-io-t.vercel.app"); 
   
   // TAMBAHKAN CORS HEADERS LOCAL HOSTS
   // res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5501"); 
